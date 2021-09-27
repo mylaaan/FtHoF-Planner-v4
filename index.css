@@ -1,0 +1,40 @@
+body{ 
+	background-color: white;
+}
+
+md-checkbox {
+    margin-top: 10px;
+}
+
+.content {
+    max-width: 1440px;
+    margin: auto;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+td {
+	min-width: 150px;
+}
+
+td.index {
+	min-width: 50px;
+}
+
+md-input-container .md-errors-spacer{
+ min-height: 0px !important;
+}
+
+.listdemoBasicUsage md-divider {
+  margin-top: 10px;
+  margin-bottom: 0; }
+
+a { cursor: pointer; color: blue; }
+a:hover,a.hover { text-decoration: underline; }
+
+.md-subheader .md-subheader-content { min-height: 2.5em; }
+
+.highlightCombo { background-color: yellow; }
+.highlightSkip { background-color: lightblue; }
