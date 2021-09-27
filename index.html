@@ -128,7 +128,7 @@
 				</md-toolbar>
 				<md-content>
 					<md-list flex>
-						<md-subheader class="md-no-sticky">Season is not Easter or Valentines and Chime is off.</md-subheader>
+						<md-subheader class="md-no-sticky">Season is not Easter or Valentines.</md-subheader>
 						<md-list-item class="md-2-line" ng-repeat="cookie_list in cookies" ng-click="null">
 							<img ng-src={{cookie_list[0].wrath?"img/WrathCookie.png":"img/GoldCookie.png"}} class="md-avatar" alt="Golden Cookie" />
 							<div class="md-list-item-text{{cookie_list[0].noteworthy ? ' highlightCombo' : ''}}" layout="column">
@@ -146,7 +146,7 @@
 				</md-toolbar>
 				<md-content>
 					<md-list flex>
-						<md-subheader class="md-no-sticky">Season is Easter or Valentines OR Chime is on.</md-subheader>
+						<md-subheader class="md-no-sticky">Season is Easter or Valentines.</md-subheader>
 						<md-list-item class="md-2-line" ng-repeat="cookie_list in cookies" ng-click="null">
 							<img ng-src={{cookie_list[1].wrath?"img/WrathCookie.png":"img/GoldCookie.png"}} class="md-avatar" alt="Golden Cookie" />
 							<div class="md-list-item-text{{cookie_list[1].noteworthy ? ' highlightCombo' : ''}}" layout="column">
