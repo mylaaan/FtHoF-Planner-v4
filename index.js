@@ -152,7 +152,7 @@ app.controller('myCtrl', function($scope) {
         gamblerSpell.innerCookie1 = check_cookies(spellsCast + 1, '', false, true);
         gamblerSpell.innerCookie2 = check_cookies(spellsCast + 1, '', true, true);
         
-        gamblerSpell.hasBs = gamblerSpell.innerCookie1.type == 'Building Special' || gamblerSpell.innerCookie2.type == 'Building Special' || gamblerSpell.innerCookie3.type == 'Building Special';
+        gamblerSpell.hasBs = gamblerSpell.innerCookie1.type == 'Building Special' || gamblerSpell.innerCookie2.type == 'Building Special';
       }
         
       //TODO: Do something with edifice to make it clear if it will fail or not. like this:
@@ -164,7 +164,7 @@ app.controller('myCtrl', function($scope) {
         gamblerSpell.innerCookie1 = check_cookies(spellsCast + 1, '', false, false);
         gamblerSpell.innerCookie2 = check_cookies(spellsCast + 1, '', true, false);
         
-        gamblerSpell.hasEf = gamblerSpell.innerCookie1.type == 'Elder Frenzy' || gamblerSpell.innerCookie2.type == 'Elder Frenzy' || gamblerSpell.innerCookie3.type == 'Elder Frenzy';
+        gamblerSpell.hasEf = gamblerSpell.innerCookie1.type == 'Elder Frenzy' || gamblerSpell.innerCookie2.type == 'Elder Frenzy';
       }
 
       //TODO: again, handle spontaneous edifice
