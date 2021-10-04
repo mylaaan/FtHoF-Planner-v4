@@ -59,10 +59,10 @@ app.controller('myCtrl', function($scope) {
       gambler = check_gambler($scope.spellsCastTotal+i)
 			$scope.cookies[i].push(cookie1)
 			$scope.cookies[i].push(cookie2)
-			$scope.cookies[i].push(cookie3)
+			$scope.cookies[i].push(cookie2)
       $scope.cookies[i].push(gambler)
       
-      if (cookiesContainBuffs($scope.include_ef_in_sequence, cookie1, cookie2, cookie3) || gambler.hasBs || ($scope.include_ef_in_sequence && gambler.hasEf) ) {
+      if (cookiesContainBuffs($scope.include_ef_in_sequence, cookie1, cookie2, cookie2) || gambler.hasBs || ($scope.include_ef_in_sequence && gambler.hasEf) ) {
         bsIndices.push(i);
       }
       
@@ -151,7 +151,6 @@ app.controller('myCtrl', function($scope) {
       if (gfdSpell.name == "Force the Hand of Fate") {
         gamblerSpell.innerCookie1 = check_cookies(spellsCast + 1, '', false, true);
         gamblerSpell.innerCookie2 = check_cookies(spellsCast + 1, '', true, true);
-        gamblerSpell.innerCookie3 = check_cookies(spellsCast + 1, 'easter', true, true);
         
         gamblerSpell.hasBs = gamblerSpell.innerCookie1.type == 'Building Special' || gamblerSpell.innerCookie2.type == 'Building Special' || gamblerSpell.innerCookie3.type == 'Building Special';
       }
@@ -164,7 +163,6 @@ app.controller('myCtrl', function($scope) {
       if (gfdSpell.name == "Force the Hand of Fate") {
         gamblerSpell.innerCookie1 = check_cookies(spellsCast + 1, '', false, false);
         gamblerSpell.innerCookie2 = check_cookies(spellsCast + 1, '', true, false);
-        gamblerSpell.innerCookie3 = check_cookies(spellsCast + 1, 'easter', true, false);
         
         gamblerSpell.hasEf = gamblerSpell.innerCookie1.type == 'Elder Frenzy' || gamblerSpell.innerCookie2.type == 'Elder Frenzy' || gamblerSpell.innerCookie3.type == 'Elder Frenzy';
       }
