@@ -20,6 +20,12 @@ app.controller('myCtrl', function($scope) {
 		$scope.lookahead += 10
 		$scope.update_cookies()
 	}
+
+    $scope.cast_spell = function() {
+        $scope.spellsCastThisAscension++;
+        $scope.spellsCastTotal++;
+        $scope.update_cookies();
+    }
 	
 	$scope.load_game = function(str) {
 		if(!str) {
