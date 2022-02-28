@@ -2,8 +2,9 @@ body {
     background-color: white;
 }
 
-md-checkbox {
-    margin-top: 10px;
+input {
+    margin: 8px 0;
+    width: 80px;
 }
 
 .content {
