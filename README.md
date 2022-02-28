@@ -128,7 +128,8 @@ FtHoF Planner for Cookie Clicker by Orteil
             <a href="https://discord.gg/cookie">@mylaaan</a> (discord)
             <ul>
                 <li>The fourth version only added ease of use interface options. Like the "Cast Spell" button to
-                    make it easier to keep track of where you are without importing the save again.
+                    make it easier to keep track of where you are without importing the save again. Also updated 
+                    some visual features and removed Google Analytics.
                 </li>
             </ul>
         </li>
