@@ -1,5 +1,5 @@
-body{ 
-	background-color: white;
+body {
+    background-color: white;
 }
 
 md-checkbox {
@@ -16,25 +16,39 @@ table, th, td {
 }
 
 td {
-	min-width: 150px;
+    min-width: 150px;
 }
 
 td.index {
-	min-width: 50px;
+    min-width: 50px;
 }
 
-md-input-container .md-errors-spacer{
- min-height: 0px !important;
+md-input-container .md-errors-spacer {
+    min-height: 0px !important;
 }
 
 .listdemoBasicUsage md-divider {
-  margin-top: 10px;
-  margin-bottom: 0; }
+    margin-top: 10px;
+    margin-bottom: 0;
+}
 
-a { cursor: pointer; color: blue; }
-a:hover,a.hover { text-decoration: underline; }
+a {
+    cursor: pointer;
+    color: blue;
+}
 
-.md-subheader .md-subheader-content { min-height: 2.5em; }
+a:hover, a.hover {
+    text-decoration: underline;
+}
 
-.highlightCombo { background-color: yellow; }
-.highlightSkip { background-color: lightblue; }
+.md-subheader .md-subheader-content {
+    min-height: 2.5em;
+}
+
+.highlightCombo {
+    background-color: yellow;
+}
+
+.highlightSkip {
+    background-color: lightblue;
+}

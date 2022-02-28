@@ -1,188 +1,215 @@
 <!DOCTYPE html>
 <html lang="en-US">
-<!-- Angular Material requires Angular.js Libraries -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
-
-<!-- Angular Material Library -->
-<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-22166588-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-22166588-2');
-</script>
-
-<script src="https://orteil.dashnet.org/cookieclicker/base64.js"></script>	
-<script src="index.js"></script>
-<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
-<link rel="stylesheet" type="text/css" href="index.css">
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
-<title>FtHoF Planner v3</title>
 <head>
-	<md-toolbar>
-	    <div class="md-toolbar-tools">
-			<h1>
-				<span>Cookie Clicker FtHoF Planner v3</span>
-			</h1>
-		</div>
-	</md-toolbar>
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-22166588-2"></script>
+    <script>
+		window.dataLayer = window.dataLayer || [];
+
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+
+		gtag('js', new Date());
+
+		gtag('config', 'UA-22166588-2');
+    </script>
+
+    <script src="https://orteil.dashnet.org/cookieclicker/base64.js"></script>
+    <script src="index.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+
+
+    <title>FtHoF Planner v3</title>
 </head>
 <body>
-	<div ng-app="myApp" ng-controller="myCtrl">
-	<div class="content">
-		<div layout="row">
-		<md-input-container flex>
-			<label>Save Code</label>
-			<input onClick="this.select();" ng-model="save_string" style="color: grey;">
-		</md-input-container>
-		<md-button class="md-raised md-primary" ng-click="load_game()">Import Save</md-button>
-		</div>
-    <ul ng-if="combos">
-      <li ng-repeat="combo in combos">
-        <b>{{$index + min_combo_length}}x Combo</b> 
-        <ul ng-if="combo.shortest.idx == -1"><li>No combo of this length</li></ul>
-        <ul ng-if="combo.shortest.idx != -1">
-          <li ng-if="combo.first.idx != -1"><a href="#{{combo.first.idx}}">Earliest:</a> Length {{combo.first.length}}; spread {{combo.first.length - ($index + min_combo_length)}}; starting at <a href="#{{combo.first.idx}}">spell #{{combo.first.idx+1}}</a></li>
-          <li ng-if="combo.first.idx == -1">No combo of this length with spread <= {{max_spread}}</li>
-          <li><a href="#{{combo.shortest.idx}}">Shortest:</a> Length {{combo.shortest.length}}; spread {{combo.shortest.length - ($index + min_combo_length)}}; starting at <a href="#{{combo.shortest.idx}}">spell #{{combo.shortest.idx+1}}</a></li>
-        </ul> 
-      </li>
-    </ul>
-		<p>Based on <a href="https://messieurs.github.io/fthofplannerv2/index.html"> FtHoF planner v2</a> by @skeezy (discord), which again is based on the <a href="http://fthof-planner.s3-website.us-east-2.amazonaws.com/">original FtHoF planner</a>, written by <a href="https://www.reddit.com/user/RebelKeithy">RebelKeithy</a>. Huge thanks to them for creating such a helpful tool.</p>
-    <p>Skeezy made a short guide explaining the new options/features he added which is found <a href="https://messieurs.github.io/fthofplannerv2/guide.html">here</a>.</p>
-		<p><b>New in version 3: Chime no longer changes the outcome of FtHoF, which broke the combofinder in FtHoF planner v2. This version only looks for combos with and without easter or valentines activated, ignoring chime.</b></p>
-		<p><b>Update: Found a bug. The combofinder is still including unobtainable two-change FtHoFs from Gambler's Dream. Will try to fix this soon.</b></p>
-		<p>Feel free to contact me at <a href="https://discord.com/invite/r6hssr5">discord</a>, I'm @eminenti</p>
-		<md-divider ></md-divider>
-    
-    <label>Lookahead length</label>
-    <input type="number" ng-model="lookahead" min=10 max=1000> 
-    
-    <md-divider ></md-divider>
-	
-    <label>Min Combo</label>
-    <input type="number" ng-model="min_combo_length" min=1 max=16> 
-    
-    <label>Max Combo</label>
-    <input type="number" ng-model="max_combo_length" min=1 max=16>     
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <h1>
+            <span>Cookie Clicker FtHoF Planner v3</span>
+        </h1>
+    </div>
+</md-toolbar>
+<div ng-app="myApp" ng-controller="myCtrl">
+    <div class="content">
+        <div layout="row">
+            <md-input-container flex>
+                <label>Save Code</label>
+                <input onClick="this.select();" ng-model="save_string" style="color: grey;">
+            </md-input-container>
+            <md-button class="md-raised md-primary" ng-click="load_game()">Import Save</md-button>
+        </div>
+        <ul ng-if="combos">
+            <li ng-repeat="combo in combos">
+                <b>{{$index + min_combo_length}}x Combo</b>
+                <ul ng-if="combo.shortest.idx == -1">
+                    <li>No combo of this length</li>
+                </ul>
+                <ul ng-if="combo.shortest.idx != -1">
+                    <li ng-if="combo.first.idx != -1"><a href="#{{combo.first.idx}}">Earliest:</a> Length
+                        {{combo.first.length}}; spread {{combo.first.length - ($index + min_combo_length)}}; starting at
+                        <a href="#{{combo.first.idx}}">spell #{{combo.first.idx+1}}</a></li>
+                    <li ng-if="combo.first.idx == -1">No combo of this length with spread <= {{max_spread}}</li>
+                    <li><a href="#{{combo.shortest.idx}}">Shortest:</a> Length {{combo.shortest.length}}; spread
+                        {{combo.shortest.length - ($index + min_combo_length)}}; starting at <a
+                                href="#{{combo.shortest.idx}}">spell #{{combo.shortest.idx+1}}</a></li>
+                </ul>
+            </li>
+        </ul>
+        <p>Based on <a href="https://messieurs.github.io/fthofplannerv2/index.html"> FtHoF planner v2</a> by @skeezy
+            (discord), which again is based on the <a href="http://fthof-planner.s3-website.us-east-2.amazonaws.com/">original
+                FtHoF planner</a>, written by <a href="https://www.reddit.com/user/RebelKeithy">RebelKeithy</a>. Huge
+            thanks to them for creating such a helpful tool.</p>
+        <p>Skeezy made a short guide explaining the new options/features he added which is found <a
+                href="https://messieurs.github.io/fthofplannerv2/guide.html">here</a>.</p>
+        <p><b>New in version 3: Chime no longer changes the outcome of FtHoF, which broke the combofinder in FtHoF
+            planner v2. This version only looks for combos with and without easter or valentines activated, ignoring
+            chime.</b></p>
+        <p><b>Update: Found a bug. The combofinder is still including unobtainable two-change FtHoFs from Gambler's
+            Dream. Will try to fix this soon.</b></p>
+        <p>Feel free to contact me at <a href="https://discord.com/invite/r6hssr5">discord</a>, I'm @eminenti</p>
+        <md-divider></md-divider>
 
-    <label>Max Spread</label>
-    <input type="number" ng-model="max_spread" min=0 max=99> 
+        <label>Lookahead length</label>
+        <input type="number" ng-model="lookahead" min=10 max=1000>
 
-    <md-checkbox ng-checked=true ng-model="include_ef_in_sequence" aria-label="Include Elder Frenzy">
-      Include Elder Frenzies
-    </md-checkbox>
-    
-    <md-checkbox ng-checked=true ng-model="skip_abominations" aria-label="Allow Abomination Skips">
-      Skip Abominations
-    </md-checkbox>    
-    
-    <md-checkbox ng-checked=true ng-model="skip_edifices" aria-label="Allow Spontaneous Edifice Skips">
-      Skip Spontaneous Edifices
-    </md-checkbox>    
+        <md-divider></md-divider>
 
-    
- 		<md-divider ></md-divider>
+        <label>Min Combo</label>
+        <input type="number" ng-model="min_combo_length" min=1 max=16>
 
-    <label>Golden Cookies on screen</label>
-    <input type="number" ng-model="on_screen_cookies" min=0 max=10>     
-    
-    <md-checkbox ng-model="dragonflight" aria-label="Dragonflight Buff Active">
-      Dragonflight Buff Active
-    </md-checkbox>    
-    
+        <label>Max Combo</label>
+        <input type="number" ng-model="max_combo_length" min=1 max=16>
 
- 		<md-divider ></md-divider>
+        <label>Max Spread</label>
+        <input type="number" ng-model="max_spread" min=0 max=99>
 
-	<md-button class="md-raised md-primary" ng-click="update_cookies()">Apply Settings</md-button>
-	<md-button class="md-raised md-primary" ng-click="cast_spell()">Cast Spell</md-button>
+        <md-checkbox ng-checked=true ng-model="include_ef_in_sequence" aria-label="Include Elder Frenzy">
+            Include Elder Frenzies
+        </md-checkbox>
 
-		<md-divider ></md-divider>
-    
-		
-		<div layout-gt-sm="row" layout="column">
-			<div flex-gt-sm="15" flex>
-				<md-toolbar layout="row" class="md-hue-3">
-					<div class="md-toolbar-tools">
-						<h1>Spell #</h1>
-					</div>
-				</md-toolbar>
-				<md-content>
-					<md-list flex>
-						<md-subheader class="md-no-sticky">Relative to now (This ascension | All time)</md-subheader>
-						<md-list-item class="md-2-line" ng-repeat="cookie_list in cookies" ng-click="null">
-							<div class="md-list-item-text" layout="column">
-                <a name="{{$index}}"></a>
-								<h3>{{($index+1) + " (" + (spellsCastThisAscension+$index+1) + " | " + (spellsCastTotal+$index+1) + ")"}}</h3>
-							</div>
-						</md-list-item>
-				</md-content>
-			</div>
-			<md-divider></md-divider>
-			<div flex-gt-sm="30" flex>
-				<md-toolbar layout="row" class="md-hue-3">
-					<div class="md-toolbar-tools">
-						<h1>No Change</h1>
-					</div>
-				</md-toolbar>
-				<md-content>
-					<md-list flex>
-						<md-subheader class="md-no-sticky">Season is not Easter or Valentines.</md-subheader>
-						<md-list-item class="md-2-line" ng-repeat="cookie_list in cookies" ng-click="null">
-							<img ng-src={{cookie_list[0].wrath?"img/WrathCookie.png":"img/GoldCookie.png"}} class="md-avatar" alt="Golden Cookie" />
-							<div class="md-list-item-text{{cookie_list[0].noteworthy ? ' highlightCombo' : ''}}" layout="column">
-								<h3>{{cookie_list[0].type}}</h3>
-							</div>
-						</md-list-item>
-				</md-content>
-			</div>
-			<md-divider ></md-divider>
-			<div flex-gt-sm="30" flex>
-				<md-toolbar layout="row" class="md-hue-3">
-					<div class="md-toolbar-tools">
-						<h1>One Change</h1>
-					</div>
-				</md-toolbar>
-				<md-content>
-					<md-list flex>
-						<md-subheader class="md-no-sticky">Season is Easter or Valentines.</md-subheader>
-						<md-list-item class="md-2-line" ng-repeat="cookie_list in cookies" ng-click="null">
-							<img ng-src={{cookie_list[1].wrath?"img/WrathCookie.png":"img/GoldCookie.png"}} class="md-avatar" alt="Golden Cookie" />
-							<div class="md-list-item-text{{cookie_list[1].noteworthy ? ' highlightCombo' : ''}}" layout="column">
-								<h3>{{cookie_list[1].type}}</h3>
-							</div>
-						</md-list-item>
-				</md-content>
-      </div>
-			<md-divider ></md-divider>
-			<div flex-gt-sm="30" flex>
-				<md-toolbar layout="row" class="md-hue-3">
-					<div class="md-toolbar-tools">
-						<span>Gambler's Dream</span>
-					</div>
-				</md-toolbar>
-				<md-content>
-					<md-list flex>
-						<md-subheader class="md-no-sticky">Gambler's Fever Dream</md-subheader>
-						<md-list-item class="md-2-line" ng-repeat="cookie_list in cookies" >
-							<img ng-src={{cookie_list[3].backfire?"img/WrathCookie.png":"img/GoldCookie.png"}} class="md-avatar" alt="Golden Cookie" />
-							<div class="md-list-item-text{{(cookie_list[3].hasBs || cookie_list[3].hasEf) ? ' highlightCombo' : cookie_list[3].type == 'Resurrect Abomination' || (cookie_list[3].type == 'Spontaneous Edifice' && !cookie_list[3].backfire) ? ' highlightSkip' : ''}}" layout="column">
-								<h3 title="{{cookie_list[3].innerCookie1.type + '; ' + cookie_list[3].innerCookie2.type + '; ' + cookie_list[3].innerCookie3.type}}">{{cookie_list[3] ? cookie_list[3].type : "Blank"}}</h3>
-							</div>
-						</md-list-item>
-				</md-content>
-      </div>      
-		</div>
-		<md-button class="md-raised md-primary" ng-click="load_more()">Load More</md-button>
-	</div>
-	</div>
+        <md-checkbox ng-checked=true ng-model="skip_abominations" aria-label="Allow Abomination Skips">
+            Skip Abominations
+        </md-checkbox>
+
+        <md-checkbox ng-checked=true ng-model="skip_edifices" aria-label="Allow Spontaneous Edifice Skips">
+            Skip Spontaneous Edifices
+        </md-checkbox>
+
+
+        <md-divider></md-divider>
+
+        <label>Golden Cookies on screen</label>
+        <input type="number" ng-model="on_screen_cookies" min=0 max=10>
+
+        <md-checkbox ng-model="dragonflight" aria-label="Dragonflight Buff Active">
+            Dragonflight Buff Active
+        </md-checkbox>
+
+
+        <md-divider></md-divider>
+
+        <md-button class="md-raised md-primary" ng-click="update_cookies()">Apply Settings</md-button>
+        <md-button class="md-raised md-primary" ng-click="cast_spell()">Cast Spell</md-button>
+
+        <md-divider></md-divider>
+
+
+        <div layout-gt-sm="row" layout="column">
+            <div flex-gt-sm="15" flex>
+                <md-toolbar layout="row" class="md-hue-3">
+                    <div class="md-toolbar-tools">
+                        <h1>Spell #</h1>
+                    </div>
+                </md-toolbar>
+                <md-content>
+                    <md-list flex>
+                        <md-subheader class="md-no-sticky">Relative to now (This ascension | All time)</md-subheader>
+                        <md-list-item class="md-2-line" ng-repeat="cookie_list in cookies" ng-click="null">
+                            <div class="md-list-item-text" layout="column">
+                                <a name="{{$index}}"></a>
+                                <h3>{{($index+1) + " (" + (spellsCastThisAscension+$index+1) + " | " +
+                                    (spellsCastTotal+$index+1) + ")"}}</h3>
+                            </div>
+                        </md-list-item>
+                </md-content>
+            </div>
+            <md-divider></md-divider>
+            <div flex-gt-sm="30" flex>
+                <md-toolbar layout="row" class="md-hue-3">
+                    <div class="md-toolbar-tools">
+                        <h1>No Change</h1>
+                    </div>
+                </md-toolbar>
+                <md-content>
+                    <md-list flex>
+                        <md-subheader class="md-no-sticky">Season is not Easter or Valentines.</md-subheader>
+                        <md-list-item class="md-2-line" ng-repeat="cookie_list in cookies" ng-click="null">
+                            <img ng-src={{cookie_list[0].wrath?"img/WrathCookie.png":"img/GoldCookie.png"}}
+                                 class="md-avatar" alt="Golden Cookie"/>
+                            <div class="md-list-item-text{{cookie_list[0].noteworthy ? ' highlightCombo' : ''}}"
+                                 layout="column">
+                                <h3>{{cookie_list[0].type}}</h3>
+                            </div>
+                        </md-list-item>
+                </md-content>
+            </div>
+            <md-divider></md-divider>
+            <div flex-gt-sm="30" flex>
+                <md-toolbar layout="row" class="md-hue-3">
+                    <div class="md-toolbar-tools">
+                        <h1>One Change</h1>
+                    </div>
+                </md-toolbar>
+                <md-content>
+                    <md-list flex>
+                        <md-subheader class="md-no-sticky">Season is Easter or Valentines.</md-subheader>
+                        <md-list-item class="md-2-line" ng-repeat="cookie_list in cookies" ng-click="null">
+                            <img ng-src={{cookie_list[1].wrath?"img/WrathCookie.png":"img/GoldCookie.png"}}
+                                 class="md-avatar" alt="Golden Cookie"/>
+                            <div class="md-list-item-text{{cookie_list[1].noteworthy ? ' highlightCombo' : ''}}"
+                                 layout="column">
+                                <h3>{{cookie_list[1].type}}</h3>
+                            </div>
+                        </md-list-item>
+                </md-content>
+            </div>
+            <md-divider></md-divider>
+            <div flex-gt-sm="30" flex>
+                <md-toolbar layout="row" class="md-hue-3">
+                    <div class="md-toolbar-tools">
+                        <span>Gambler's Dream</span>
+                    </div>
+                </md-toolbar>
+                <md-content>
+                    <md-list flex>
+                        <md-subheader class="md-no-sticky">Gambler's Fever Dream</md-subheader>
+                        <md-list-item class="md-2-line" ng-repeat="cookie_list in cookies">
+                            <img ng-src={{cookie_list[3].backfire?"img/WrathCookie.png":"img/GoldCookie.png"}}
+                                 class="md-avatar" alt="Golden Cookie"/>
+                            <div class="md-list-item-text{{(cookie_list[3].hasBs || cookie_list[3].hasEf) ? ' highlightCombo' : cookie_list[3].type == 'Resurrect Abomination' || (cookie_list[3].type == 'Spontaneous Edifice' && !cookie_list[3].backfire) ? ' highlightSkip' : ''}}"
+                                 layout="column">
+                                <h3 title="{{cookie_list[3].innerCookie1.type + '; ' + cookie_list[3].innerCookie2.type + '; ' + cookie_list[3].innerCookie3.type}}">
+                                    {{cookie_list[3] ? cookie_list[3].type : "Blank"}}</h3>
+                            </div>
+                        </md-list-item>
+                </md-content>
+            </div>
+        </div>
+        <md-button class="md-raised md-primary" ng-click="load_more()">Load More</md-button>
+    </div>
+</div>
 </body>
 </html>
 
