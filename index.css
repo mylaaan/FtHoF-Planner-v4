@@ -52,3 +52,15 @@ a:hover, a.hover {
 .highlightSkip {
     background-color: lightblue;
 }
+
+.combo-listitem{
+    height: 3.5em;
+}
+
+.collapse-content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    #background-color: #f1f1f1;
+    border: 5px solid lightblue;
+}

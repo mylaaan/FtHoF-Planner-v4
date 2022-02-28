@@ -140,6 +140,18 @@ app.controller('myCtrl', function ($scope) {
 		console.log($scope.combos);
 	}
 
+	$scope.collapse_interface = function (contentId) {
+		console.log("content-" + contentId);
+		if( contentId) {
+			var content = document.getElementById("content-" + contentId);
+			if (content.style.display === "block") {
+				content.style.display = "none";
+			} else {
+				content.style.display = "block";
+			}
+		}
+	}
+
 	//want to return shortest, and first sequence for a given combo_length
 	//if nothing that satisfies max_spread, shortest will still be filled but first will be empty
 	function findCombos(combo_length, max_spread, bsIndices, skipIndices) {
