@@ -66,7 +66,7 @@ app.controller('myCtrl', function ($scope) {
 	$scope.lookahead = 200
 
 	$scope.load_more = function () {
-		$scope.lookahead += 10
+		$scope.lookahead += 50
 		$scope.update_cookies()
 	}
 
