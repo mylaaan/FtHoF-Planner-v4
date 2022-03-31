@@ -65,3 +65,12 @@ a:hover, a.hover {
     #background-color: #f1f1f1;
     border: 5px solid lightblue;
 }
+
+.hide-column {
+    align-self: flex-end;
+    font-size: 0.7em;
+}
+.hide-column > input {
+  width: 13px;
+  accent-color: rgb(255,89,145);
+}

@@ -306,10 +306,16 @@
                 </md-content>
             </div>
             <md-divider></md-divider>
-            <div flex-gt-sm="30" flex>
+            <div style="display: block;" id="content-3" flex-gt-sm="30" flex >
                 <md-toolbar layout="row" class="md-hue-3">
                     <div class="md-toolbar-tools">
                         <h1>One Change</h1>
+                        <div style="flex-grow: 1;"></div>
+                        <div class="hide-column">
+                          <!--Sadly not possible to look clean with md-checkbox as it doesn't resize.-->
+                          <input type="checkbox" id="show" ng-click="collapse_interface(3)" checked=true>
+                          <label for="show">Show</label>
+                      </div>
                     </div>
                 </md-toolbar>
                 <md-content>
@@ -352,4 +358,3 @@
 </div>
 </body>
 </html>
-
