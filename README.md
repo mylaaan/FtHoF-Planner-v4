@@ -1,6 +1,8 @@
 # FtHoF-Planner-v4
 
 FtHoF Planner for Cookie Clicker by Orteil
+</br></br>
+<i>This version is compatible with version 2.048, "a mind of its own"  update that went live on 31-05-2022</i>
 
 <h3>Usage</h3>
 <div>
@@ -10,8 +12,8 @@ FtHoF Planner for Cookie Clicker by Orteil
                 after each ascension) and on the number of spells cast this game. This means that if you know
                 the seed then you can predict the results for casting Force the Hand of Fate.</b>
             <ul>
-                <li>There are two main things that can affect the result of FtHoF, the current season and the
-                    golden cookie sound selector. If the season is Valentines or Easter the random seed will be
+                <li>There are two main things that can affect the result of FtHoF, the current season <s>and the
+                    golden cookie sound selector</s>. If the season is Valentines or Easter the random seed will be
                     increased once. This means there are 2 possible results for each cast of FtHoF depending on
                     the selected season. Continuing to switch between seasons will not affecting the results,
                     they only affect the result at the time the spell is cast.
@@ -88,6 +90,14 @@ FtHoF Planner for Cookie Clicker by Orteil
                 </li>
             </ul>
         </li>
+        <li>For early game players the possibility to hide the One change column as they won't have Season
+            Switcher
+        </li>
+        <li>Added a checkbox for the "Supreme Intellect" dragon aura as this should influence the
+            positive/negative rate by 10% more negative. This is maybe a bug in the game but currently this
+            button is a placebo or a placeholder for future implementation. The game and the planner do
+            currently not step out of line when using the aura without any update to the planner.
+        </li>
     </ul>
 </div>
 
@@ -134,4 +144,4 @@ FtHoF Planner for Cookie Clicker by Orteil
             </ul>
         </li>
     </ul>
-<div>
+</div>

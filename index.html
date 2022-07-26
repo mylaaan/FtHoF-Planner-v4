@@ -40,7 +40,7 @@
         <p></p><b>Based on FtHoF planner v1, v2, v3 by RebelKeithy, Skeezy and Eminenti. Huge thanks to them for
         creating such
         a helpful tool.</br>
-        The latest update comes with an "Apply Settings" and "Cast Spell" button
+        The current version is compatible with cookie clicker 2.048, "a mind of its own".
         <md-button class="md-raised md-primary" ng-click="collapse_interface(1)">see here</md-button>
         for the full version history, credits & contacts.</b></p>
         <div class="collapse-content" id="content-1">
@@ -108,8 +108,9 @@
                         after each ascension) and on the number of spells cast this game. This means that if you know
                         the seed then you can predict the results for casting Force the Hand of Fate:</b>
                     <ul>
-                        <li>There are two main things that can affect the result of FtHoF, the current season and the
-                            golden cookie sound selector. If the season is Valentines or Easter the random seed will be
+                        <li>There are two main things that can affect the result of FtHoF, the current season <s>and the
+                            golden cookie sound selector</s>. If the season is Valentines or Easter the random seed will
+                            be
                             increased once. This means there are 2 possible results for each cast of FtHoF depending on
                             the selected season. Continuing to switch between seasons will not affecting the results,
                             they only affect the result at the time the spell is cast.
@@ -195,6 +196,14 @@
                         </li>
                     </ul>
                 </li>
+                <li>For early game players the possibility to hide the One change column as they won't have Season
+                    Switcher
+                </li>
+                <li>Added a checkbox for the "Supreme Intellect" dragon aura as this should influence the
+                    positive/negative rate by 10% more negative. This is maybe a bug in the game but currently this
+                    button is a placebo or a placeholder for future implementation. The game and the planner do
+                    currently not step out of line when using the aura without any update to the planner.
+                </li>
                 <pre>&lt;/Mylaaan&gt;</pre>
             </ul>
         </div>
@@ -257,6 +266,10 @@
             Dragonflight Buff Active
         </md-checkbox>
 
+        <md-checkbox ng-model="supremeintellect" aria-label="Supreme Intellect Aura Active">
+            Supreme Intellect Aura Active
+        </md-checkbox>
+
 
         <md-divider></md-divider>
 
@@ -283,6 +296,7 @@
                                     (spellsCastTotal+$index+1) + ")"}}</h3>
                             </div>
                         </md-list-item>
+                    </md-list>
                 </md-content>
             </div>
             <md-divider></md-divider>
@@ -303,19 +317,20 @@
                                 <h3>{{cookie_list[0].type}}</h3>
                             </div>
                         </md-list-item>
+                    </md-list>
                 </md-content>
             </div>
             <md-divider></md-divider>
-            <div style="display: block;" id="content-3" flex-gt-sm="30" flex >
+            <div style="display: block;" id="content-3" flex-gt-sm="30" flex>
                 <md-toolbar layout="row" class="md-hue-3">
                     <div class="md-toolbar-tools">
                         <h1>One Change</h1>
                         <div style="flex-grow: 1;"></div>
                         <div class="hide-column">
-                          <!--Sadly not possible to look clean with md-checkbox as it doesn't resize.-->
-                          <input type="checkbox" id="show" ng-click="collapse_interface(3)" checked=true>
-                          <label for="show">Show</label>
-                      </div>
+                            <!--Sadly not possible to look clean with md-checkbox as it doesn't resize.-->
+                            <input type="checkbox" id="show" ng-click="collapse_interface(3)" checked=true>
+                            <label for="show">Show</label>
+                        </div>
                     </div>
                 </md-toolbar>
                 <md-content>
@@ -329,6 +344,7 @@
                                 <h3>{{cookie_list[1].type}}</h3>
                             </div>
                         </md-list-item>
+                    </md-list>
                 </md-content>
             </div>
             <md-divider></md-divider>
@@ -350,6 +366,7 @@
                                     {{cookie_list[3] ? cookie_list[3].type : "Blank"}}</h3>
                             </div>
                         </md-list-item>
+                    </md-list>
                 </md-content>
             </div>
         </div>
