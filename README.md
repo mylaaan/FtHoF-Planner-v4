@@ -2,7 +2,7 @@
 
 FtHoF Planner for Cookie Clicker by Orteil
 </br></br>
-<i>This version is compatible with version 2.048, "a mind of its own"  update that went live on 31-05-2022</i>
+<i>This version is compatible with version 2.052, "often imitated, never duplicated"  update that went live on 07-05-2023</i>
 
 <h3>Usage</h3>
 <div>
